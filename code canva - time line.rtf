@@ -1,0 +1,758 @@
+{\rtf1\ansi\ansicpg1250\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="cs">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Interaktivn\'ed \uc0\u269 asov\'e1 osa starov\u283 k\'fdch civilizac\'ed</title>\
+    <script src="https://cdn.tailwindcss.com"></script>\
+    <style>\
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap');\
+        \
+        body \{\
+            font-family: 'Raleway', sans-serif;\
+            background-color: #f8f3e9;\
+            color: #333;\
+            scroll-behavior: smooth;\
+        \}\
+        \
+        h1, h2, h3, h4 \{\
+            font-family: 'Cinzel', serif;\
+        \}\
+        \
+        .timeline \{\
+            position: relative;\
+            padding: 2rem 0;\
+        \}\
+        \
+        .timeline::before \{\
+            content: '';\
+            position: absolute;\
+            width: 6px;\
+            background: linear-gradient(to bottom, #c9a66b, #8b6b43);\
+            top: 0;\
+            bottom: 0;\
+            left: 50%;\
+            transform: translateX(-50%);\
+            border-radius: 3px;\
+        \}\
+        \
+        .timeline-item \{\
+            position: relative;\
+            margin-bottom: 3rem;\
+        \}\
+        \
+        .timeline-item:nth-child(odd) .timeline-content \{\
+            margin-left: auto;\
+        \}\
+        \
+        .timeline-dot \{\
+            position: absolute;\
+            width: 24px;\
+            height: 24px;\
+            background-color: #c9a66b;\
+            border-radius: 50%;\
+            left: 50%;\
+            top: 20px;\
+            transform: translateX(-50%);\
+            z-index: 10;\
+            border: 4px solid #f8f3e9;\
+            box-shadow: 0 0 0 4px rgba(201, 166, 107, 0.3);\
+            transition: all 0.3s ease;\
+        \}\
+        \
+        .timeline-item:hover .timeline-dot \{\
+            background-color: #8b6b43;\
+            transform: translateX(-50%) scale(1.2);\
+        \}\
+        \
+        .timeline-date \{\
+            position: absolute;\
+            top: 20px;\
+            width: 150px;\
+            text-align: right;\
+            font-weight: 600;\
+            color: #8b6b43;\
+            font-family: 'Cinzel', serif;\
+        \}\
+        \
+        .timeline-item:nth-child(odd) .timeline-date \{\
+            left: auto;\
+            right: calc(50% + 45px);\
+        \}\
+        \
+        .timeline-item:nth-child(even) .timeline-date \{\
+            left: calc(50% + 45px);\
+            text-align: left;\
+        \}\
+        \
+        .timeline-content \{\
+            width: calc(50% - 45px);\
+            padding: 1.5rem;\
+            background: #fff;\
+            border-radius: 8px;\
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);\
+            transition: all 0.3s ease;\
+            cursor: pointer;\
+            overflow: hidden;\
+        \}\
+        \
+        .timeline-content:hover \{\
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);\
+            transform: translateY(-5px);\
+        \}\
+        \
+        .timeline-content h3 \{\
+            color: #8b6b43;\
+            margin-bottom: 0.5rem;\
+        \}\
+        \
+        .timeline-content p \{\
+            margin-bottom: 0.5rem;\
+            line-height: 1.6;\
+        \}\
+        \
+        .timeline-content .civilization-icon \{\
+            width: 32px;\
+            height: 32px;\
+            margin-right: 8px;\
+        \}\
+        \
+        .timeline-content .details \{\
+            max-height: 0;\
+            overflow: hidden;\
+            transition: max-height 0.5s ease;\
+        \}\
+        \
+        .timeline-content.active .details \{\
+            max-height: 500px;\
+        \}\
+        \
+        .timeline-content .read-more \{\
+            color: #c9a66b;\
+            font-weight: 600;\
+            display: inline-flex;\
+            align-items: center;\
+            margin-top: 0.5rem;\
+        \}\
+        \
+        .timeline-content .read-more svg \{\
+            transition: transform 0.3s ease;\
+            margin-left: 4px;\
+        \}\
+        \
+        .timeline-content.active .read-more svg \{\
+            transform: rotate(180deg);\
+        \}\
+        \
+        .civilization-badge \{\
+            display: inline-flex;\
+            align-items: center;\
+            padding: 4px 10px;\
+            border-radius: 20px;\
+            font-size: 0.8rem;\
+            font-weight: 600;\
+            margin-bottom: 0.75rem;\
+        \}\
+        \
+        .egypt \{\
+            background-color: rgba(255, 205, 86, 0.2);\
+            color: #b7860b;\
+        \}\
+        \
+        .greece \{\
+            background-color: rgba(54, 162, 235, 0.2);\
+            color: #1e6091;\
+        \}\
+        \
+        .rome \{\
+            background-color: rgba(255, 99, 132, 0.2);\
+            color: #a83b4b;\
+        \}\
+        \
+        .mesopotamia \{\
+            background-color: rgba(153, 102, 255, 0.2);\
+            color: #6441a5;\
+        \}\
+        \
+        .china \{\
+            background-color: rgba(75, 192, 192, 0.2);\
+            color: #2a7979;\
+        \}\
+        \
+        .filter-buttons \{\
+            display: flex;\
+            justify-content: center;\
+            gap: 10px;\
+            margin-bottom: 2rem;\
+            flex-wrap: wrap;\
+        \}\
+        \
+        .filter-button \{\
+            padding: 8px 16px;\
+            border-radius: 20px;\
+            font-weight: 600;\
+            cursor: pointer;\
+            transition: all 0.3s ease;\
+            border: 2px solid transparent;\
+        \}\
+        \
+        .filter-button:hover \{\
+            transform: translateY(-2px);\
+        \}\
+        \
+        .filter-button.active \{\
+            border: 2px solid currentColor;\
+        \}\
+        \
+        .era-label \{\
+            position: absolute;\
+            left: 0;\
+            right: 0;\
+            text-align: center;\
+            font-family: 'Cinzel', serif;\
+            font-weight: 700;\
+            color: #8b6b43;\
+            font-size: 1.5rem;\
+            padding: 1rem 0;\
+            background-color: rgba(248, 243, 233, 0.9);\
+            z-index: 5;\
+            border-bottom: 2px solid #c9a66b;\
+        \}\
+        \
+        @media (max-width: 768px) \{\
+            .timeline::before \{\
+                left: 40px;\
+            \}\
+            \
+            .timeline-dot \{\
+                left: 40px;\
+            \}\
+            \
+            .timeline-content \{\
+                width: calc(100% - 80px);\
+                margin-left: 80px !important;\
+            \}\
+            \
+            .timeline-date \{\
+                left: 0 !important;\
+                right: auto !important;\
+                text-align: left !important;\
+                width: 80px;\
+                font-size: 0.8rem;\
+            \}\
+            \
+            .era-label \{\
+                font-size: 1.2rem;\
+            \}\
+        \}\
+        \
+        .scroll-top \{\
+            position: fixed;\
+            bottom: 20px;\
+            right: 20px;\
+            background-color: #c9a66b;\
+            color: white;\
+            width: 50px;\
+            height: 50px;\
+            border-radius: 50%;\
+            display: flex;\
+            justify-content: center;\
+            align-items: center;\
+            cursor: pointer;\
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);\
+            opacity: 0;\
+            transition: all 0.3s ease;\
+            z-index: 100;\
+        \}\
+        \
+        .scroll-top.visible \{\
+            opacity: 1;\
+        \}\
+        \
+        .scroll-top:hover \{\
+            background-color: #8b6b43;\
+            transform: translateY(-3px);\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div class="container mx-auto px-4 py-8">\
+        <header class="text-center mb-12">\
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#8b6b43]">Starov\uc0\u283 k\'e9 civilizace</h1>\
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Prozkoumejte fascinuj\'edc\'ed cestu lidstva od roku 3000 p\uc0\u345 . n. l. do roku 500 n. l. a objevte kl\'ed\u269 ov\'e9 ud\'e1losti, kter\'e9 formovaly na\'9ai historii.</p>\
+        </header>\
+        \
+        <div class="filter-buttons">\
+            <button class="filter-button all active bg-gray-200 text-gray-800">V\'9aechny</button>\
+            <button class="filter-button egypt bg-[rgba(255,205,86,0.2)] text-[#b7860b]">Egypt</button>\
+            <button class="filter-button greece bg-[rgba(54,162,235,0.2)] text-[#1e6091]">\uc0\u344 ecko</button>\
+            <button class="filter-button rome bg-[rgba(255,99,132,0.2)] text-[#a83b4b]">\uc0\u344 \'edm</button>\
+            <button class="filter-button mesopotamia bg-[rgba(153,102,255,0.2)] text-[#6441a5]">Mezopot\'e1mie</button>\
+            <button class="filter-button china bg-[rgba(75,192,192,0.2)] text-[#2a7979]">\uc0\u268 \'edna</button>\
+        </div>\
+        \
+        <div class="timeline">\
+            <div class="era-label" style="top: 0;">Ran\'e9 civilizace (3000-2000 p\uc0\u345 . n. l.)</div>\
+            \
+            <!-- Ud\'e1lost 1 -->\
+            <div class="timeline-item" data-category="egypt">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">3100 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge egypt">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 3L4 9V21H20V9L12 3Z" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                            <path d="M12 21V12" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                            <path d="M9 21V16H15V21" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                        Egypt\
+                    </span>\
+                    <h3 class="text-xl font-bold">Sjednocen\'ed Horn\'edho a Doln\'edho Egypta</h3>\
+                    <p>Prvn\'ed faraon Meni (Narmer) sjednotil Horn\'ed a Doln\'ed Egypt a zalo\'9eil prvn\'ed dynastii.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Toto sjednocen\'ed je pova\'9eov\'e1no za za\uc0\u269 \'e1tek egyptsk\'e9 civilizace. Narmer je zobrazen na slavn\'e9 Narmerov\u283  palet\u283 , kter\'e1 je jedn\'edm z nejstar\'9a\'edch historick\'fdch artefakt\u367  zobrazuj\'edc\'edch egyptsk\'e9ho panovn\'edka.</p>\
+                        <p class="mt-2">Sjednocen\'ed umo\'9enilo vznik centralizovan\'e9ho st\'e1tu, kter\'fd mohl efektivn\uc0\u283  organizovat zem\u283 d\u283 lstv\'ed pod\'e9l \u345 eky Nil a zah\'e1jit monument\'e1ln\'ed stavebn\'ed projekty.</p>\
+                        <div class="mt-4 bg-amber-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Narmerova paleta je pova\'9eov\'e1na za jeden z nejstar\'9a\'edch historick\'fdch z\'e1znam\uc0\u367  na sv\u283 t\u283  a ukazuje kr\'e1le s korunami obou \u269 \'e1st\'ed Egypta.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 2 -->\
+            <div class="timeline-item" data-category="mesopotamia">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">3000 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge mesopotamia">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#6441a5" stroke-width="2"/>\
+                            <path d="M12 6V12L16 14" stroke="#6441a5" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        Mezopot\'e1mie\
+                    </span>\
+                    <h3 class="text-xl font-bold">Vyn\'e1lez kl\'ednov\'e9ho p\'edsma</h3>\
+                    <p>Sumerov\'e9 v Mezopot\'e1mii vyvinuli prvn\'ed zn\'e1m\'fd syst\'e9m p\'edsma - kl\'ednov\'e9 p\'edsmo.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Kl\'ednov\'e9 p\'edsmo bylo p\uc0\u367 vodn\u283  vytvo\u345 eno pro ekonomick\'e9 z\'e1znamy a \'fa\u269 etnictv\'ed. P\'edsa\u345 i pou\'9e\'edvali r\'e1kosov\'e9 ty\u269 inky k vytla\u269 en\'ed zna\u269 ek do m\u283 kk\'fdch hlin\u283 n\'fdch tabulek, kter\'e9 pak byly vysu\'9aeny na slunci nebo vyp\'e1leny.</p>\
+                        <p class="mt-2">Tento vyn\'e1lez umo\'9enil zaznamen\'e1vat informace, kter\'e9 mohly b\'fdt p\uc0\u345 ed\'e1v\'e1ny dal\'9a\'edm generac\'edm, co\'9e vedlo k rozvoji literatury, pr\'e1va a v\u283 dy.</p>\
+                        <div class="mt-4 bg-purple-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Nejstar\'9a\'ed nalezen\'e9 kl\'ednopisn\'e9 tabulky obsahuj\'ed p\uc0\u345 edev\'9a\'edm hospod\'e1\u345 sk\'e9 z\'e1znamy o mno\'9estv\'ed obil\'ed a dobytka.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 3 -->\
+            <div class="timeline-item" data-category="egypt">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">2560 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge egypt">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 3L4 9V21H20V9L12 3Z" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                            <path d="M12 21V12" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                            <path d="M9 21V16H15V21" stroke="#b7860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                        Egypt\
+                    </span>\
+                    <h3 class="text-xl font-bold">Dokon\uc0\u269 en\'ed Velk\'e9 pyramidy v G\'edze</h3>\
+                    <p>Dokon\uc0\u269 en\'ed stavby Velk\'e9 pyramidy pro faraona Chufua (Cheopse), jednoho ze sedmi div\u367  starov\u283 k\'e9ho sv\u283 ta.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Velk\'e1 pyramida byla nejvy\'9a\'9a\'ed lidskou stavbou po v\'edce ne\'9e 3800 let. Byla postavena z p\uc0\u345 ibli\'9en\u283  2,3 milionu kamenn\'fdch blok\u367 , z nich\'9e ka\'9ed\'fd v\'e1\'9eil pr\u367 m\u283 rn\u283  2,5 tuny.</p>\
+                        <p class="mt-2">Stavba demonstruje vysp\uc0\u283 l\'e9 znalosti Egyp\u357 an\u367  v oblasti matematiky, astronomie a stavebn\'edho in\'9een\'fdrstv\'ed.</p>\
+                        <div class="mt-4 bg-amber-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Pyramida je tak p\uc0\u345 esn\u283  orientov\'e1na ke sv\u283 tov\'fdm stran\'e1m, \'9ee odchylka od severu je pouh\'fdch 0,05 stupn\u283 .</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <div class="era-label" style="top: 33%;">Klasick\'e9 obdob\'ed (2000-1000 p\uc0\u345 . n. l.)</div>\
+            \
+            <!-- Ud\'e1lost 4 -->\
+            <div class="timeline-item" data-category="mesopotamia">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">1754 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge mesopotamia">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#6441a5" stroke-width="2"/>\
+                            <path d="M12 6V12L16 14" stroke="#6441a5" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        Mezopot\'e1mie\
+                    </span>\
+                    <h3 class="text-xl font-bold">Chammurapiho z\'e1kon\'edk</h3>\
+                    <p>Babylonsk\'fd kr\'e1l Chammurapi vytvo\uc0\u345 il jeden z nejstar\'9a\'edch a nej\'fapln\u283 j\'9a\'edch pr\'e1vn\'edch kodex\u367  starov\u283 ku.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Z\'e1kon\'edk obsahoval 282 z\'e1kon\uc0\u367  vytesan\'fdch do kamenn\'e9 st\'e9ly. Z\'e1kony pokr\'fdvaly \'9airokou \'9ak\'e1lu t\'e9mat v\u269 etn\u283  trestn\'edho pr\'e1va, ob\u269 ansk\'e9ho pr\'e1va, obchodu a rodinn\'fdch vztah\u367 .</p>\
+                        <p class="mt-2">Z\'e1kon\'edk je zn\'e1m\'fd principem "oko za oko, zub za zub", kter\'fd stanovil, \'9ee trest by m\uc0\u283 l odpov\'eddat zp\u367 soben\'e9 \'9akod\u283 .</p>\
+                        <div class="mt-4 bg-purple-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Na vrcholu st\'e9ly je vyobrazen Chammurapi p\uc0\u345 ij\'edmaj\'edc\'ed z\'e1kony od boha slunce \'8aama\'9ae, co\'9e m\u283 lo zd\u367 raznit bo\'9esk\'fd p\u367 vod z\'e1kon\u367 .</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 5 -->\
+            <div class="timeline-item" data-category="china">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">1600 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge china">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2a7979" stroke-width="2"/>\
+                            <path d="M9.5 9.5L14.5 14.5M14.5 9.5L9.5 14.5" stroke="#2a7979" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u268 \'edna\
+                    </span>\
+                    <h3 class="text-xl font-bold">Dynastie \'8aang</h3>\
+                    <p>Vznik dynastie \'8aang, prvn\'ed historicky dolo\'9een\'e9 dynastie v \uc0\u268 \'edn\u283 .</p>\
+                    <div class="details">\
+                        <p class="mt-4">Dynastie \'8aang vl\'e1dla v \'fadol\'ed \'8elut\'e9 \uc0\u345 eky a zavedla slo\'9eit\'fd syst\'e9m p\'edsma, kter\'fd se stal z\'e1kladem modern\'ed \u269 \'edn\'9atiny.</p>\
+                        <p class="mt-2">\'8aangov\'e9 praktikovali v\uc0\u283 \'9at\u283 n\'ed pomoc\'ed tzv. v\u283 \'9atebn\'fdch kost\'ed - zv\'ed\u345 ec\'edch kost\'ed a \'9eelv\'edch krun\'fd\u345 \u367 , na kter\'e9 byly vyryty ot\'e1zky pro p\u345 edky a bohy.</p>\
+                        <div class="mt-4 bg-teal-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>\'8aangov\'e9 byli prvn\'ed, kdo v \uc0\u268 \'edn\u283  pou\'9e\'edvali bronz ve velk\'e9m m\u283 \u345 \'edtku, co\'9e jim poskytlo vojenskou p\u345 evahu nad okoln\'edmi kmeny.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 6 -->\
+            <div class="timeline-item" data-category="greece">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">1200 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge greece">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1e6091" stroke-width="2"/>\
+                            <path d="M4.93 4.93L19.07 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M19.07 4.93L4.93 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 ecko\
+                    </span>\
+                    <h3 class="text-xl font-bold">Trojsk\'e1 v\'e1lka</h3>\
+                    <p>Legend\'e1rn\'ed konflikt mezi \uc0\u344 eky a m\u283 stem Tr\'f3ja, pozd\u283 ji zv\u283 \u269 n\u283 n\'fd v Hom\'e9rov\u283  Iliad\u283 .</p>\
+                    <div class="details">\
+                        <p class="mt-4">A\uc0\u269 koli je Trojsk\'e1 v\'e1lka zn\'e1m\'e1 p\u345 edev\'9a\'edm z mytologie, archeologick\'e9 d\u367 kazy nazna\u269 uj\'ed, \'9ee v t\'e9to dob\u283  skute\u269 n\u283  do\'9alo k v\'e1le\u269 n\'e9mu konfliktu v oblasti dne\'9an\'edho Turecka.</p>\
+                        <p class="mt-2">P\uc0\u345 \'edb\u283 h o Trojsk\'e9m koni, d\u345 ev\u283 n\'e9m koni napln\u283 n\'e9m \u345 eck\'fdmi voj\'e1ky, kter\'fd byl pou\'9eit k proniknut\'ed do m\u283 sta, je jedn\'edm z nejzn\'e1m\u283 j\'9a\'edch p\u345 \'edb\u283 h\u367  z t\'e9to v\'e1lky.</p>\
+                        <div class="mt-4 bg-blue-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Archeologick\'e9 vykop\'e1vky v Turecku odhalily m\uc0\u283 sto, kter\'e9 je pravd\u283 podobn\u283  historickou Tr\'f3jou, s d\u367 kazy o n\'e1siln\'e9m zni\u269 en\'ed kolem roku 1180 p\u345 . n. l.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <div class="era-label" style="top: 66%;">Klasick\'fd a hel\'e9nistick\'fd sv\uc0\u283 t (1000 p\u345 . n. l. - 500 n. l.)</div>\
+            \
+            <!-- Ud\'e1lost 7 -->\
+            <div class="timeline-item" data-category="greece">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">776 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge greece">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1e6091" stroke-width="2"/>\
+                            <path d="M4.93 4.93L19.07 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M19.07 4.93L4.93 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 ecko\
+                    </span>\
+                    <h3 class="text-xl font-bold">Prvn\'ed olympijsk\'e9 hry</h3>\
+                    <p>Kon\'e1n\'ed prvn\'edch zaznamenan\'fdch olympijsk\'fdch her v Olympii na po\uc0\u269 est boha Dia.</p>\
+                    <div class="details">\
+                        <p class="mt-4">P\uc0\u367 vodn\'ed olympijsk\'e9 hry se konaly ka\'9ed\'e9 \u269 ty\u345 i roky a zahrnovaly discipl\'edny jako b\u283 h, z\'e1pas, box, z\'e1vody voz\u367  a p\u283 tiboj.</p>\
+                        <p class="mt-2">B\uc0\u283 hem her byl vyhl\'e1\'9aen posv\'e1tn\'fd m\'edr (ekecheiria), kter\'fd zakazoval v\'9aechny konflikty mezi \u345 eck\'fdmi m\u283 stsk\'fdmi st\'e1ty, aby sportovci a div\'e1ci mohli bezpe\u269 n\u283  cestovat na hry.</p>\
+                        <div class="mt-4 bg-blue-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>V\'edt\uc0\u283 zov\'e9 her nedost\'e1vali zlat\'e9 medaile, ale olivov\'e9 v\u283 nce a byli ve sv\'fdch m\u283 stech oslavov\'e1ni jako hrdinov\'e9.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 8 -->\
+            <div class="timeline-item" data-category="greece">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">508 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge greece">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1e6091" stroke-width="2"/>\
+                            <path d="M4.93 4.93L19.07 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M19.07 4.93L4.93 19.07" stroke="#1e6091" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 ecko\
+                    </span>\
+                    <h3 class="text-xl font-bold">Ath\'e9nsk\'e1 demokracie</h3>\
+                    <p>Kleisthen\'e9s zav\'e1d\'ed demokratick\'e9 reformy v Ath\'e9n\'e1ch, \uc0\u269 \'edm\'9e vznik\'e1 prvn\'ed demokratick\'fd syst\'e9m na sv\u283 t\u283 .</p>\
+                    <div class="details">\
+                        <p class="mt-4">Ath\'e9nsk\'e1 demokracie byla p\uc0\u345 \'edm\'e1 demokracie, kde ob\u269 an\'e9 (svobodn\'ed mu\'9ei) hlasovali p\u345 \'edmo o z\'e1konech a politice na shrom\'e1\'9ed\u283 n\'ed zvan\'e9m ekklesia.</p>\
+                        <p class="mt-2">Syst\'e9m zahrnoval radu 500 \uc0\u269 len\u367  (boul\'e9), kte\u345 \'ed byli vyb\'edr\'e1ni losem, a lidov\'fd soud (heliaia), kde ob\u269 an\'e9 slou\'9eili jako porotci.</p>\
+                        <div class="mt-4 bg-blue-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Slovo "demokracie" poch\'e1z\'ed z \uc0\u345 eck\'fdch slov "demos" (lid) a "kratos" (vl\'e1da), tedy "vl\'e1da lidu".</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 9 -->\
+            <div class="timeline-item" data-category="rome">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">44 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge rome">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#a83b4b" stroke-width="2"/>\
+                            <path d="M12 6V18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M6 12H18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 \'edm\
+                    </span>\
+                    <h3 class="text-xl font-bold">Zavra\'9ed\uc0\u283 n\'ed Julia Caesara</h3>\
+                    <p>Julius Caesar je zavra\'9ed\uc0\u283 n v sen\'e1tu skupinou spiklenc\u367  vedenou Markem Brutem a Cassiem.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Caesar byl zavra\'9ed\uc0\u283 n b\u283 hem b\u345 eznov\'fdch id (15. b\u345 ezna) pot\'e9, co byl jmenov\'e1n do\'9eivotn\'edm dikt\'e1torem. Spiklenci se ob\'e1vali, \'9ee chce zru\'9ait \u345 \'edmskou republiku a prohl\'e1sit se kr\'e1lem.</p>\
+                        <p class="mt-2">Jeho smrt vedla k ob\uc0\u269 ansk\'e9 v\'e1lce, kter\'e1 nakonec vy\'fastila v konec \u345 \'edmsk\'e9 republiky a vznik \u345 \'edmsk\'e9ho c\'edsa\u345 stv\'ed pod veden\'edm Caesarova adoptivn\'edho syna Octaviana (pozd\u283 ji zn\'e1m\'e9ho jako Augustus).</p>\
+                        <div class="mt-4 bg-red-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Caesarova posledn\'ed slova k Brutovi byla \'fadajn\uc0\u283  "I ty, m\u367 j synu?" (Et tu, Brute?), a\u269 koli historici se domn\'edvaj\'ed, \'9ee ve skute\u269 nosti mohl mluvit \u345 ecky.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 10 -->\
+            <div class="timeline-item" data-category="rome">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">27 p\uc0\u345 . n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge rome">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#a83b4b" stroke-width="2"/>\
+                            <path d="M12 6V18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M6 12H18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 \'edm\
+                    </span>\
+                    <h3 class="text-xl font-bold">Vznik \uc0\u344 \'edmsk\'e9ho c\'edsa\u345 stv\'ed</h3>\
+                    <p>Octavianus (Augustus) se st\'e1v\'e1 prvn\'edm \uc0\u345 \'edmsk\'fdm c\'edsa\u345 em, \u269 \'edm\'9e za\u269 \'edn\'e1 obdob\'ed \u344 \'edmsk\'e9ho c\'edsa\u345 stv\'ed.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Augustus form\'e1ln\uc0\u283  zachoval republik\'e1nsk\'e9 instituce, ale ve skute\u269 nosti soust\u345 edil moc ve sv\'fdch rukou. Toto obdob\'ed je zn\'e1m\'e9 jako Pax Romana (\u344 \'edmsk\'fd m\'edr), doba relativn\'ed stability a prosperity.</p>\
+                        <p class="mt-2">Za jeho vl\'e1dy do\'9alo k v\'fdznamn\'fdm reform\'e1m v arm\'e1d\uc0\u283 , spr\'e1v\u283  provinci\'ed, da\u328 ov\'e9m syst\'e9mu a k rozs\'e1hl\'e9 v\'fdstavb\u283 .</p>\
+                        <div class="mt-4 bg-red-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Augustus se chlubil, \'9ee "na\'9ael \uc0\u344 \'edm z cihel a zanechal ho z mramoru", co\'9e odkazuje na jeho rozs\'e1hl\'fd stavebn\'ed program.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 11 -->\
+            <div class="timeline-item" data-category="rome">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">313 n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge rome">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#a83b4b" stroke-width="2"/>\
+                            <path d="M12 6V18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M6 12H18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 \'edm\
+                    </span>\
+                    <h3 class="text-xl font-bold">Edikt mil\'e1nsk\'fd</h3>\
+                    <p>C\'edsa\uc0\u345 i Konstantin a Licinius vyd\'e1vaj\'ed Edikt mil\'e1nsk\'fd, kter\'fd zaji\'9a\u357 uje n\'e1bo\'9eenskou svobodu v \u344 \'edmsk\'e9 \u345 \'ed\'9ai.</p>\
+                    <div class="details">\
+                        <p class="mt-4">Edikt ukon\uc0\u269 il pron\'e1sledov\'e1n\'ed k\u345 es\u357 an\u367  a umo\'9enil jim svobodn\u283  praktikovat svou v\'edru. Byl to v\'fdznamn\'fd krok k tomu, aby se k\u345 es\u357 anstv\'ed stalo dominantn\'edm n\'e1bo\'9eenstv\'edm v \u344 \'edmsk\'e9 \u345 \'ed\'9ai.</p>\
+                        <p class="mt-2">Konstantin pozd\uc0\u283 ji podporoval k\u345 es\u357 anstv\'ed a svolal Prvn\'ed nikajsk\'fd koncil v roce 325, kter\'fd \u345 e\'9ail teologick\'e9 ot\'e1zky a pomohl sjednotit k\u345 es\u357 anskou doktr\'ednu.</p>\
+                        <div class="mt-4 bg-red-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Konstantin byl prvn\'edm \uc0\u345 \'edmsk\'fdm c\'edsa\u345 em, kter\'fd konvertoval ke k\u345 es\u357 anstv\'ed, a\u269 koli byl pok\u345 t\u283 n a\'9e na smrteln\'e9 posteli.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Ud\'e1lost 12 -->\
+            <div class="timeline-item" data-category="rome">\
+                <div class="timeline-dot"></div>\
+                <div class="timeline-date">476 n. l.</div>\
+                <div class="timeline-content">\
+                    <span class="civilization-badge rome">\
+                        <svg class="civilization-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#a83b4b" stroke-width="2"/>\
+                            <path d="M12 6V18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                            <path d="M6 12H18" stroke="#a83b4b" stroke-width="2" stroke-linecap="round"/>\
+                        </svg>\
+                        \uc0\u344 \'edm\
+                    </span>\
+                    <h3 class="text-xl font-bold">P\'e1d Z\'e1pado\uc0\u345 \'edmsk\'e9 \u345 \'ed\'9ae</h3>\
+                    <p>Germ\'e1nsk\'fd vojev\uc0\u367 dce Odoaker sesadil posledn\'edho z\'e1pado\u345 \'edmsk\'e9ho c\'edsa\u345 e Romula Augusta, co\'9e je pova\'9eov\'e1no za konec Z\'e1pado\u345 \'edmsk\'e9 \u345 \'ed\'9ae.</p>\
+                    <div class="details">\
+                        <p class="mt-4">P\'e1d Z\'e1pado\uc0\u345 \'edmsk\'e9 \u345 \'ed\'9ae byl v\'fdsledkem dlouhodob\'e9ho \'fapadku zp\u367 soben\'e9ho politickou nestabilitou, ekonomick\'fdmi probl\'e9my, korupc\'ed a tlakem barbarsk\'fdch kmen\u367  na hranic\'edch.</p>\
+                        <p class="mt-2">V\'fdchodo\uc0\u345 \'edmsk\'e1 \u345 \'ed\'9ae (Byzantsk\'e1 \u345 \'ed\'9ae) pokra\u269 ovala dal\'9a\'edch t\'e9m\u283 \u345  1000 let a\'9e do p\'e1du Konstantinopole v roce 1453.</p>\
+                        <div class="mt-4 bg-red-50 p-3 rounded-lg">\
+                            <h4 class="font-bold">Zaj\'edmavost:</h4>\
+                            <p>Posledn\'ed c\'edsa\uc0\u345  Romulus Augustus byl ironicky pojmenov\'e1n po zakladateli \u344 \'edma (Romulus) a prvn\'edm c\'edsa\u345 i (Augustus), ale byl jen d\'edt\u283 tem a vl\'e1dl pouze rok.</p>\
+                        </div>\
+                    </div>\
+                    <button class="read-more">\
+                        V\'edce informac\'ed\
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                        </svg>\
+                    </button>\
+                </div>\
+            </div>\
+        </div>\
+        \
+        <div class="scroll-top">\
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+            </svg>\
+        </div>\
+    </div>\
+    \
+    <script>\
+        document.addEventListener('DOMContentLoaded', function() \{\
+            // Rozbalov\'e1n\'ed informa\uc0\u269 n\'edch karet\
+            const timelineContents = document.querySelectorAll('.timeline-content');\
+            timelineContents.forEach(content => \{\
+                const readMoreBtn = content.querySelector('.read-more');\
+                readMoreBtn.addEventListener('click', () => \{\
+                    content.classList.toggle('active');\
+                \});\
+            \});\
+            \
+            // Filtrov\'e1n\'ed ud\'e1lost\'ed\
+            const filterButtons = document.querySelectorAll('.filter-button');\
+            const timelineItems = document.querySelectorAll('.timeline-item');\
+            \
+            filterButtons.forEach(button => \{\
+                button.addEventListener('click', () => \{\
+                    const category = button.classList[1];\
+                    \
+                    // Aktivn\'ed tla\uc0\u269 \'edtko\
+                    filterButtons.forEach(btn => btn.classList.remove('active'));\
+                    button.classList.add('active');\
+                    \
+                    // Filtrov\'e1n\'ed ud\'e1lost\'ed\
+                    if (category === 'all') \{\
+                        timelineItems.forEach(item => \{\
+                            item.style.display = 'block';\
+                        \});\
+                    \} else \{\
+                        timelineItems.forEach(item => \{\
+                            if (item.dataset.category === category) \{\
+                                item.style.display = 'block';\
+                            \} else \{\
+                                item.style.display = 'none';\
+                            \}\
+                        \});\
+                    \}\
+                \});\
+            \});\
+            \
+            // Tla\uc0\u269 \'edtko pro n\'e1vrat nahoru\
+            const scrollTopBtn = document.querySelector('.scroll-top');\
+            \
+            window.addEventListener('scroll', () => \{\
+                if (window.pageYOffset > 300) \{\
+                    scrollTopBtn.classList.add('visible');\
+                \} else \{\
+                    scrollTopBtn.classList.remove('visible');\
+                \}\
+            \});\
+            \
+            scrollTopBtn.addEventListener('click', () => \{\
+                window.scrollTo(\{\
+                    top: 0,\
+                    behavior: 'smooth'\
+                \});\
+            \});\
+        \});\
+    </script>\
+<script>(function()\{function c()\{var b=a.contentDocument||a.contentWindow.document;if(b)\{var d=b.createElement('script');d.innerHTML="window.__CF$cv$params=\{r:'965dc311c346c0a1',t:'MTc1MzYzNjM0OS4wMDAwMDA='\};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)\}\}if(document.body)\{var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else\{var e=document.onreadystatechange||function()\{\};document.onreadystatechange=function(b)\{e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())\}\}\}\})();</script></body>\
+</html>\
+}
